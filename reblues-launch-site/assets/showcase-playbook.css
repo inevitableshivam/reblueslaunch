@@ -1,14 +1,15 @@
 /* The playbook is a quiet editorial close to the films and case studies. */
 .x-site .x-playbook {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, .9fr);
+  grid-template-columns: minmax(0, 1.06fr) minmax(0, .94fr);
   align-items: center;
-  gap: clamp(24px, 3vw, 40px);
-  max-width: 1000px;
+  gap: clamp(28px, 3.2vw, 44px);
+  width: 100%;
+  max-width: 1100px;
   margin: clamp(72px, 7vw, 104px) auto 0;
-  padding: 12px;
+  padding: clamp(13px, 1.4vw, 16px);
   border: 1px solid #deded8;
-  border-radius: 15px;
+  border-radius: 20px;
   background: #f8f8f5;
   box-shadow: inset 0 1px 0 #fff;
   scroll-margin-top: 96px;
@@ -17,7 +18,7 @@
 .x-site .x-playbook__cover {
   display: block;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 11px;
   background: #303a55;
   aspect-ratio: 16 / 9;
 }
@@ -35,12 +36,12 @@
 }
 
 .x-site .x-playbook__copy {
-  padding: 14px clamp(12px, 2vw, 24px) 14px 0;
+  padding: 18px clamp(18px, 2.2vw, 28px) 18px 0;
 }
 
 .x-site .x-playbook__eyebrow {
   margin: 0 0 12px;
-  color: #8a8985;
+  color: #777873;
   font: 500 11px/1.4 "IBM Plex Mono", monospace;
   letter-spacing: .025em;
 }
@@ -59,10 +60,10 @@
 }
 
 .x-site .x-playbook__copy > p:not(.x-playbook__eyebrow) {
-  max-width: 43ch;
+  max-width: 41ch;
   margin: 14px 0 0;
-  color: #71716e;
-  font: 400 14px/1.65 "Manrope", var(--studio-font);
+  color: #686966;
+  font: 400 14px/1.58 "Manrope", var(--studio-font);
   letter-spacing: -.015em;
 }
 
@@ -77,10 +78,9 @@
 .x-site .x-playbook__open {
   display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+  justify-content: center;
   min-height: 44px;
-  padding: 10px 15px;
+  padding: 10px 20px;
   border: 1px solid #35383a;
   border-radius: 8px;
   background: linear-gradient(#414449, #303236);
@@ -92,15 +92,16 @@
 
 .x-site .x-playbook__open:focus-visible,
 .x-site .x-playbook__cover:focus-visible,
-.x-dk__playbook:focus-visible {
+.x-dk__playbook:focus-visible,
+.x-dk__external:focus-visible {
   outline: 2px solid #e76820;
   outline-offset: 4px;
 }
 
-.x-dk__playbook {
+.x-dk__playbook,
+.x-dk__external {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
   min-height: 44px;
   flex: none;
   color: #5a5b58;
@@ -111,8 +112,10 @@
   white-space: nowrap;
 }
 
-.x-dk__playbook span { color: #fe8a45; }
 .x-dk.is-playbook .x-dk__playbook { display: none; }
+.x-dk__external { display: none; }
+.x-dk.is-playbook .x-dk__external { display: inline-flex; }
+.x-dk__external-short { display: none; }
 
 @media (max-width: 700px) {
   .x-site .x-playbook {
@@ -120,13 +123,18 @@
     gap: 8px;
     margin-top: 64px;
     padding: 10px;
-    border-radius: 13px;
+    border-radius: 15px;
   }
 
-  .x-site .x-playbook__cover { border-radius: 7px; }
+  .x-site .x-playbook__cover { border-radius: 8px; }
   .x-site .x-playbook__copy { padding: 20px 12px 16px; }
   .x-site .x-playbook h3 { max-width: none; }
   .x-site .x-playbook__actions { margin-top: 22px; }
+}
+
+@media (max-width: 420px) {
+  .x-dk__external-long { display: none; }
+  .x-dk__external-short { display: inline; }
 }
 
 @media (prefers-reduced-motion: reduce) {

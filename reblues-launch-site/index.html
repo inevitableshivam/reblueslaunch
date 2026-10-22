@@ -307,7 +307,7 @@ tbody th .dot { display: flex; width: fit-content; }
   transition: box-shadow var(--dur-quick) ease;
 }
 .btn:hover { box-shadow: inset 0 0 0 100px var(--hover-wash); }
-.btn[target="_blank"]::after { content: "\2197"; font-size: 11px; color: var(--text-secondary); }
+.btn[target="_blank"]::after { content: none; }
 .link {
   color: var(--text-primary);
   text-decoration: underline;
@@ -816,9 +816,9 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
       .x-btn::after { content: ""; width: 6px; height: 6px; background: var(--x-orange); pointer-events: none; }
       @media (hover: hover) { .x-btn:hover { translate: 0 -2px; scale: 1.01; box-shadow: 0 12px 26px -6px rgba(20, 30, 50, 0.3); } }
       .x-btn--line { background: #fff; color: var(--x-ink); border-color: var(--x-line); }
-      .x-btn--line::after { content: "→"; width: auto; height: auto; background: none; color: var(--x-orange); }
+      .x-btn--line::after { content: none; }
       .x-btn--glass { background: rgba(14, 52, 96, 0.56); color: #fff; border-color: rgba(255, 255, 255, 0.55); }
-      .x-btn--glass::after { content: "↓"; width: auto; height: auto; background: none; }
+      .x-btn--glass::after { content: none; }
       .x-links { display: flex; flex-wrap: wrap; gap: 12px; }
 
       /* nav: separate floating glass pills over the hero art; logo pill left, link pills + CTA right */
@@ -2681,10 +2681,10 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
         .x-site .x-lr-log { padding: 28px 24px; }
       }
     </style>
-    <link rel="stylesheet" href="assets/refinement.css"/>
+    <link rel="stylesheet" href="assets/refinement.css?v=20261023-1"/>
     <link rel="stylesheet" href="assets/process-stack.css"/>
     <link rel="stylesheet" href="assets/plans-footer.css"/>
-    <link rel="stylesheet" href="assets/showcase-playbook.css"/>
+    <link rel="stylesheet" href="assets/showcase-playbook.css?v=20261023-1"/>
     <script src="assets/process-slide.js" defer></script>
     <script>
       document.documentElement.classList.add("x-js");
@@ -2867,7 +2867,7 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
                     <div class="x-lr-note"><small>THE DIRECTION</small><p>Make the product instantly understandable—and hard to forget.</p></div>
                     <p class="x-lr-outcome"><span>Deliverable</span><strong>One clear launch angle</strong></p>
                   </div>
-                  <a aria-label="Plan your launch" class="x-lr-composer" href="https://calendly.com/rebluesagency/30min" rel="noopener noreferrer" target="_blank"><span class="x-lr-composer__text">Plan your launch with us</span><span class="x-lr-send" aria-hidden="true">↗</span></a>
+                  <a aria-label="Plan your launch" class="x-lr-composer" href="https://calendly.com/rebluesagency/30min" rel="noopener noreferrer" target="_blank"><span class="x-lr-composer__text">Plan your launch with us</span></a>
                 </div>
               </div>
               <div class="x-lr-cols">
@@ -2992,9 +2992,9 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
                 <div class="x-playbook__copy">
                   <p class="x-playbook__eyebrow">From the Reblues launch room · 38 pages</p>
                   <h3 id="playbook-title">The Launch <em>Playbook.</em></h3>
-                  <p>From the hook to the first hour after publish. A practical guide to the story, film and distribution behind a launch that travels.</p>
+                  <p>A practical guide to the story, film, and rollout behind a launch that travels.</p>
                   <div class="x-playbook__actions">
-                    <a class="x-playbook__open" href="#/playbook" aria-haspopup="dialog">Read the playbook <span aria-hidden="true">↗</span></a>
+                    <a class="x-playbook__open" href="#/playbook" aria-haspopup="dialog">Read the playbook</a>
                   </div>
                 </div>
               </aside>
@@ -3053,7 +3053,7 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
                   </div>
                   <div class="x-tcard__cap">
                     <div class="x-tcard__row">
-                      <a class="x-tcard__btn" href="https://calendly.com/rebluesagency/30min" rel="noopener noreferrer" target="_blank">Book a 30-minute call <span aria-hidden="true">↗</span></a>
+                      <a class="x-tcard__btn" href="https://calendly.com/rebluesagency/30min" rel="noopener noreferrer" target="_blank">Book a 30-minute call</a>
                     </div>
                   </div>
                   <div class="x-tcard__glare" aria-hidden="true"></div>
@@ -3119,7 +3119,8 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
         <div class="x-dk__panel">
           <div class="x-dk__top">
             <p class="x-dk__title" id="x-dk-title"></p>
-            <a class="x-dk__playbook" href="#/playbook" aria-haspopup="dialog">Launch playbook <span aria-hidden="true">↗</span></a>
+            <a class="x-dk__playbook" href="#/playbook" aria-haspopup="dialog">Launch playbook</a>
+            <a class="x-dk__external" href="assets/playbook/reblues-launch-playbook-v3.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open The Launch Playbook PDF in a new tab"><span class="x-dk__external-long">Open PDF in new tab</span><span class="x-dk__external-short">Open PDF</span></a>
             <button class="x-dk__btn x-dk__close" type="button" data-dk-close="" aria-label="Close reader">✕</button>
           </div>
           <div class="x-dk__stage" id="x-dk-stage">
@@ -4472,11 +4473,11 @@ Hook first, logo last. Distribution planned before the first frame. One owner, f
         }
         function postCard(p, i, feat) {
           return '<li class="x-r' + (feat ? " is-feat" : "") + '" data-groups="' + p.cat + '" style="--st:' + (Math.min(i, 3) * 0.08) + 's"><a class="x-cs" href="#/journal/' + p.slug + '">' + cover(p) +
-            '<span class="x-cs__body"><span class="x-mono">' + p.cat + " · " + p.read + "</span><h3>" + p.title + "</h3><p>" + p.dek + '</p><span class="x-jread">Read <span aria-hidden="true">→</span></span></span></a></li>';
+            '<span class="x-cs__body"><span class="x-mono">' + p.cat + " · " + p.read + "</span><h3>" + p.title + "</h3><p>" + p.dek + '</p><span class="x-jread">Read</span></span></a></li>';
         }
         function nextPost(p, label) {
           return '<a class="x-next x-r" href="#/journal/' + p.slug + '">' + cover(p) +
-            '<span class="x-next__body"><span class="x-mono">' + label + " · " + p.cat + " · " + p.read + "</span><h3>" + p.title + '</h3><span class="x-next__go">Read the post <span aria-hidden="true">→</span></span></span></a>';
+            '<span class="x-next__body"><span class="x-mono">' + label + " · " + p.cat + " · " + p.read + "</span><h3>" + p.title + '</h3><span class="x-next__go">Read the post</span></span></a>';
         }
         function journalHTML() {
           var cards = POSTS.map(function (p, i) { return postCard(p, i, false); }).join("");
@@ -4502,7 +4503,7 @@ Hook first, logo last. Distribution planned before the first frame. One owner, f
             '<aside class="x-jcta x-r" aria-label="Book a call"><h2>Launching soon? Tell us the date.</h2><a class="x-btn" href="' + CAL + '" target="_blank" rel="noopener noreferrer">Book a 30-min call</a></aside></div></div>' +
             '<div class="x-rd__end"><p class="x-mono x-eyebrow">Next read</p><ul class="x-csg x-jg x-jg--2">' + rel.map(function (r, k) { return postCard(r, k, false); }).join("") + "</ul>" +
             '<p class="x-mono x-eyebrow">Related film</p><a class="x-next x-r" href="#/work">' + media(pc, false) +
-            '<span class="x-next__body"><span class="x-mono">Film · ' + pc.client + "</span><h3>" + pc.title + '</h3><span class="x-next__go">Watch the films <span aria-hidden="true">→</span></span></span></a>' +
+            '<span class="x-next__body"><span class="x-mono">Film · ' + pc.client + "</span><h3>" + pc.title + '</h3><span class="x-next__go">Watch the films</span></span></a>' +
             '<div class="x-rd__back"><a class="x-btn x-btn--line" href="#/journal">Back to the Journal</a></div></div>' +
             "</div></div>";
         }
