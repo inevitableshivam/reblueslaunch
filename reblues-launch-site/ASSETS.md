@@ -1,4 +1,8 @@
-# Supabase-hosted assets used by index.html
+# Asset sources
+
+The six homepage and Films-page videos, their posters, the playbook PDF and its preview, and the orange browser-tab mark are bundled locally under `assets/`. No Drive or video-hosting service is needed for them.
+
+The URLs below are a historical inventory of Supabase-hosted artwork and film assets used by earlier versions of the page. Remaining illustrations and case-study pages still load from the public `launch-films` bucket.
 
 - https://ocoqzvxhrwnqsrifcraw.supabase.co
 - https://ocoqzvxhrwnqsrifcraw.supabase.co/storage/v1/object/public/launch-films/arqia.mp4
