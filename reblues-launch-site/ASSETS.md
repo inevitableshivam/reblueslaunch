@@ -1,6 +1,6 @@
 # Asset sources
 
-The six homepage and Films-page videos, their posters, the playbook PDF and its preview, and the orange browser-tab mark are bundled locally under `assets/`. No Drive or video-hosting service is needed for them.
+The six homepage and Films-page videos, their posters, the playbook PDF and 38 optimized in-page previews, and the orange browser-tab mark are bundled locally under `assets/`. No Drive or video-hosting service is needed for them.
 
 The URLs below are a historical inventory of Supabase-hosted artwork and film assets used by earlier versions of the page. Remaining illustrations and case-study pages still load from the public `launch-films` bucket.
 

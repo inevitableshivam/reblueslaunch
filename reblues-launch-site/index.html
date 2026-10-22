@@ -1534,55 +1534,39 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
       .x-pdf__dl:focus-visible { color: var(--x-ink); text-decoration-color: var(--x-orange); }
       @media (hover: hover) { .x-pdf__dl:hover { color: var(--x-ink); text-decoration-color: var(--x-orange); } }
 
-      /* RLDeck: in-page case-study viewer (pre-rendered page images, no PDF plugin) */
-      .x-dk { position: fixed; inset: 0; z-index: 110; display: none; grid-template-rows: auto minmax(0, 1fr) auto; gap: 16px; padding: 16px clamp(16px, 3vw, 32px) 20px; overflow: hidden; color: #fff; background: rgba(16, 16, 18, 0.74); -webkit-backdrop-filter: blur(20px) saturate(1.15); backdrop-filter: blur(20px) saturate(1.15); opacity: 0; transition: opacity 0.25s ease-out; }
-      @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .x-dk { background: rgba(16, 16, 18, 0.95); } }
+      /* Shared in-page document reader: one page, one compact control row. */
+      .x-dk { position: fixed; inset: 0; z-index: 110; display: none; place-items: center; padding: 18px; overflow: hidden; background: rgba(18, 19, 20, .76); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); opacity: 0; transition: opacity .2s ease-out; }
       .x-dk.is-open { display: grid; }
       .x-dk.is-in { opacity: 1; }
-      .x-dk__top { display: flex; align-items: center; gap: 16px; min-width: 0; }
-      .x-dk__title { flex: 1; min-width: 0; margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: var(--w-body) var(--fs-body)/1.3 var(--x-sans); letter-spacing: var(--tr-body); color: #fff; }
-      .x-dk__count { flex: none; margin: 0; font: 500 var(--fs-eyebrow)/1 var(--x-mono); letter-spacing: var(--tr-mono); text-transform: uppercase; color: rgba(255, 255, 255, 0.82); font-variant-numeric: tabular-nums; }
-      .x-dk__btn { display: inline-grid; place-items: center; flex: none; min-width: 44px; min-height: 44px; padding: 0; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.28); background: rgba(255, 255, 255, 0.08); color: #fff; font: var(--w-body) var(--fs-btn)/1 var(--x-sans); cursor: pointer; transition: background 0.2s ease-out, border-color 0.2s ease-out; }
-      @media (hover: hover) { .x-dk__btn:hover { background: rgba(255, 255, 255, 0.18); border-color: rgba(255, 255, 255, 0.5); } }
-      .x-dk__btn:disabled { opacity: 0.35; cursor: default; background: rgba(255, 255, 255, 0.08); }
-      .x-dk button:focus-visible { outline: 2px solid var(--x-orange); outline-offset: 2px; }
-      .x-dk__stage { position: relative; display: grid; grid-template-columns: 44px minmax(0, 1fr) 44px; align-items: center; gap: clamp(12px, 2vw, 28px); min-height: 0; min-width: 0; touch-action: pan-y; }
-      .x-dk__fit { position: relative; display: grid; place-items: center; width: 100%; height: 100%; min-height: 0; container-type: size; }
-      .x-dk__frame { position: relative; width: 100%; width: min(100cqw, 100cqh * 16 / 9); aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; background: rgba(255, 255, 255, 0.06); box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset, 0 30px 80px -24px rgba(0, 0, 0, 0.6), 0 8px 24px -12px rgba(0, 0, 0, 0.45); }
-      .x-dk__frame::before, .x-dk__th::before { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%) 0 0 / 220% 100%; animation: x-dk-shim 1.3s linear infinite; }
+      .x-dk__panel { display: flex; flex-direction: column; gap: 12px; width: min(1000px, 100%); max-height: calc(100dvh - 36px); padding: 14px; border: 1px solid rgba(255,255,255,.8); border-radius: 18px; background: #f6f6f3; box-shadow: 0 24px 80px rgba(0,0,0,.2); }
+      .x-dk__top { display: flex; align-items: center; gap: 14px; min-height: 40px; min-width: 0; padding: 0 2px; }
+      .x-dk__title { flex: 1; min-width: 0; margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 500 14px/1.3 var(--x-sans); letter-spacing: -.03em; color: #2b2d2e; }
+      .x-dk__count { min-width: 86px; margin: 0; text-align: center; font: 500 11px/1 var(--x-mono); letter-spacing: .06em; text-transform: uppercase; color: #747672; font-variant-numeric: tabular-nums; }
+      .x-dk__btn { display: inline-grid; place-items: center; flex: none; width: 40px; height: 40px; padding: 0; border-radius: 9px; border: 1px solid #d9d9d4; background: #fff; color: #333; font: 400 17px/1 var(--x-sans); cursor: pointer; transition: background .2s ease, border-color .2s ease; }
+      @media (hover: hover) { .x-dk__btn:hover { background: #ecece8; border-color: #b5b5af; } }
+      .x-dk__btn:disabled { opacity: .38; cursor: default; }
+      .x-dk button:focus-visible, .x-dk a:focus-visible { outline: 2px solid var(--x-orange); outline-offset: 2px; }
+      .x-dk__stage { height: min(54vw, calc(100dvh - 156px), 544px); min-height: 0; min-width: 0; touch-action: pan-y; }
+      .x-dk__fit { display: grid; place-items: center; width: 100%; height: 100%; min-height: 0; container-type: size; }
+      .x-dk__frame { position: relative; width: min(100cqw, 100cqh * 16 / 9); aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid #e0e0dc; border-radius: 9px; background: #fff; }
+      .x-dk__frame::before { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, #f1f1ee 30%, #fafaf9 50%, #f1f1ee 70%) 0 0 / 220% 100%; animation: x-dk-shim 1.3s linear infinite; }
       .x-dk__frame.is-ready::before { display: none; }
       @keyframes x-dk-shim { from { background-position: 120% 0; } to { background-position: -120% 0; } }
-      .x-dk__pg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #fff; opacity: 0; pointer-events: none; transform: translateX(var(--dx, 0)); transition: opacity 0.25s ease-out, transform 0.25s ease-out; }
+      .x-dk__pg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #fff; opacity: 0; pointer-events: none; transform: translateX(var(--dx, 0)); transition: opacity .22s ease-out, transform .22s ease-out; }
       .x-dk__pg:not(.is-loaded) { background: transparent; }
       .x-dk__pg.is-on { z-index: 1; opacity: 1; transform: none; }
       .x-dk__pg.is-on:not(.is-loaded) { opacity: 0; }
-      .x-dk__thumbs { min-width: 0; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, 0.3) transparent; -webkit-mask-image: linear-gradient(90deg, transparent, #000 24px, #000 calc(100% - 24px), transparent); mask-image: linear-gradient(90deg, transparent, #000 24px, #000 calc(100% - 24px), transparent); }
-      .x-dk__thumbs ol { display: flex; gap: 10px; width: max-content; margin: 0 auto; padding: 4px 24px 8px; list-style: none; }
-      .x-dk__th { position: relative; display: block; width: 112px; aspect-ratio: 16 / 9; padding: 0; overflow: hidden; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.18); background: rgba(255, 255, 255, 0.06); cursor: pointer; opacity: 0.62; transition: opacity 0.2s ease-out, box-shadow 0.2s ease-out; }
-      @media (hover: hover) { .x-dk__th:hover { opacity: 0.9; } }
-      .x-dk__frame::before, .x-dk__th::before { pointer-events: none; }
-      .x-dk__th.is-loaded::before { display: none; }
-      .x-dk__th img { position: relative; display: block; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.25s ease-out; }
-      .x-dk__th.is-loaded img { opacity: 1; }
-      .x-dk__th[aria-current="true"] { opacity: 1; border-color: #fe6b00; box-shadow: 0 0 0 2px #fe6b00; }
+      .x-dk__bottom { display: flex; align-items: center; justify-content: center; gap: 13px; min-height: 40px; }
       body.x-dk-lock { overflow: hidden; }
       @media (max-width: 719.98px) {
-        .x-dk { gap: 12px; padding: 10px 0 14px; }
-        .x-dk__top { padding: 0 12px 0 16px; gap: 12px; }
-        .x-dk__stage { display: block; }
-        .x-dk__fit { height: 100%; }
-        .x-dk__frame { border-radius: 0; }
-        .x-dk__arrow { position: absolute; top: 0; bottom: 0; z-index: 2; width: 34%; min-height: 0; border: 0; border-radius: 0; background: transparent; color: transparent; }
-        .x-dk__arrow:hover, .x-dk__arrow:disabled { background: transparent; }
-        .x-dk__arrow--prev { left: 0; }
-        .x-dk__arrow--next { right: 0; }
-        .x-dk__th { width: 72px; border-radius: 6px; }
-        .x-dk__thumbs ol { gap: 8px; padding: 4px 16px 6px; }
+        .x-dk { padding: 10px; }
+        .x-dk__panel { gap: 10px; max-height: calc(100dvh - 20px); padding: 10px; border-radius: 14px; }
+        .x-dk__top { gap: 8px; }
+        .x-dk__title { font-size: 12px; }
+        .x-dk__stage { height: min(54vw, calc(100dvh - 136px)); }
+        .x-dk__frame { border-radius: 6px; }
       }
-      @media (prefers-reduced-motion: reduce) {
-        .x-dk, .x-dk__pg, .x-dk__pg.is-on, .x-dk__th, .x-dk__th img { transition: none; }
-        .x-dk__frame::before, .x-dk__th::before { animation: none; }
-      }
+      @media (prefers-reduced-motion: reduce) { .x-dk, .x-dk__pg { transition: none; } .x-dk__frame::before { animation: none; } }
       /* films page cards: the player sits flush at the top of the card */
       .x-fc .x-yt { margin-top: 0; border: 0; border-bottom: 1px solid var(--x-line); border-radius: 0; flex: none; }
       .x-mq { position: relative; z-index: 1; max-width: 100%; border-top: 1px solid var(--x-line); background: var(--x-bg); overflow: hidden; overflow-x: clip; scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
@@ -2798,7 +2782,7 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
               <p class="x-hero__sub x-in" style="--i: 2">We write, produce and distribute the film your launch is built around, then put it in front of the people who decide whether it travels.</p>
               <div class="x-hero__ctas x-in" style="--i: 3">
                 <a class="x-hbtn x-hbtn--cta" href="https://calendly.com/rebluesagency/30min" rel="noopener noreferrer" target="_blank">Book a 30-min call</a>
-                <a class="x-hbtn x-hbtn--glass" href="assets/playbook/reblues-launch-playbook-v3.pdf" target="_blank" rel="noopener noreferrer">See the Playbook</a>
+                <a class="x-hbtn x-hbtn--glass" href="#/playbook" aria-haspopup="dialog">See the Playbook</a>
               </div>
             </div>
           </div>
@@ -3002,7 +2986,7 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
                 </ul>
               </div>
               <aside class="x-playbook x-rv" id="playbook" aria-labelledby="playbook-title">
-                <a class="x-playbook__cover" href="assets/playbook/reblues-launch-playbook-v3.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open The Launch Playbook PDF">
+                <a class="x-playbook__cover" href="#/playbook" aria-haspopup="dialog" aria-label="Preview The Launch Playbook">
                   <img src="assets/playbook/cover.jpg" width="1200" height="676" alt="The Launch Playbook cover: an outdoor screening beneath a sunset sky" loading="lazy" decoding="async"/>
                 </a>
                 <div class="x-playbook__copy">
@@ -3010,8 +2994,7 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
                   <h3 id="playbook-title">The Launch <em>Playbook.</em></h3>
                   <p>From the hook to the first hour after publish. A practical guide to the story, film and distribution behind a launch that travels.</p>
                   <div class="x-playbook__actions">
-                    <a class="x-playbook__open" href="assets/playbook/reblues-launch-playbook-v3.pdf" target="_blank" rel="noopener noreferrer">Read the playbook <span aria-hidden="true">↗</span></a>
-                    <a class="x-playbook__download" href="assets/playbook/reblues-launch-playbook-v3.pdf" download="Reblues-Launch-Playbook.pdf">Download PDF <span aria-hidden="true">↓</span></a>
+                    <a class="x-playbook__open" href="#/playbook" aria-haspopup="dialog">Read the playbook <span aria-hidden="true">↗</span></a>
                   </div>
                 </div>
               </aside>
@@ -3132,19 +3115,22 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
         </div>
       </div>
 
-      <div class="x-dk" id="x-deck" role="dialog" aria-modal="true" aria-labelledby="x-dk-title" aria-roledescription="case study viewer" hidden="">
-        <div class="x-dk__top">
-          <p class="x-dk__title" id="x-dk-title"></p>
-          <a class="x-dk__playbook" href="assets/playbook/reblues-launch-playbook-v3.pdf" target="_blank" rel="noopener noreferrer">Launch playbook <span aria-hidden="true">↗</span></a>
-          <p class="x-dk__count" id="x-dk-count" aria-live="polite"></p>
-          <button class="x-dk__btn" type="button" data-dk-close="" aria-label="Close case study">✕</button>
+      <div class="x-dk" id="x-deck" role="dialog" aria-modal="true" aria-labelledby="x-dk-title" aria-roledescription="document reader" hidden="">
+        <div class="x-dk__panel">
+          <div class="x-dk__top">
+            <p class="x-dk__title" id="x-dk-title"></p>
+            <a class="x-dk__playbook" href="#/playbook" aria-haspopup="dialog">Launch playbook <span aria-hidden="true">↗</span></a>
+            <button class="x-dk__btn x-dk__close" type="button" data-dk-close="" aria-label="Close reader">✕</button>
+          </div>
+          <div class="x-dk__stage" id="x-dk-stage">
+            <div class="x-dk__fit"><div class="x-dk__frame" id="x-dk-frame"></div></div>
+          </div>
+          <div class="x-dk__bottom" aria-label="Page controls">
+            <button class="x-dk__btn x-dk__arrow" type="button" id="x-dk-prev" aria-label="Previous page">←</button>
+            <p class="x-dk__count" id="x-dk-count" aria-live="polite"></p>
+            <button class="x-dk__btn x-dk__arrow" type="button" id="x-dk-next" aria-label="Next page">→</button>
+          </div>
         </div>
-        <div class="x-dk__stage" id="x-dk-stage">
-          <button class="x-dk__btn x-dk__arrow x-dk__arrow--prev" type="button" id="x-dk-prev" aria-label="Previous page">←</button>
-          <div class="x-dk__fit"><div class="x-dk__frame" id="x-dk-frame"></div></div>
-          <button class="x-dk__btn x-dk__arrow x-dk__arrow--next" type="button" id="x-dk-next" aria-label="Next page">→</button>
-        </div>
-        <nav class="x-dk__thumbs" id="x-dk-thumbs" aria-label="Pages" data-lenis-prevent=""><ol></ol></nav>
       </div>
     </div>
     <script>/* Page behaviors for Hark's component library: the nav, the theme toggle, tables, line charts and images. style-gates: data */
@@ -3628,18 +3614,24 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
       })();
     </script>
     <script>
-      // RLDeck map: the only case studies the viewer will load, keyed by slug (also the #/case/<slug> whitelist)
+      // RLDeck map: the only documents the in-page reader will load.
       (function () {
         "use strict";
         var BASE = "https://ocoqzvxhrwnqsrifcraw.supabase.co/storage/v1/object/public/launch-films/cases/";
-        function pages(slug, dir) {
+        function pages(slug) {
           var out = [];
-          for (var i = 1; i <= 16; i++) out.push(BASE + (dir || "") + slug + "-" + (i < 10 ? "0" : "") + i + ".jpg");
+          for (var i = 1; i <= 16; i++) out.push(BASE + slug + "-" + (i < 10 ? "0" : "") + i + ".jpg");
+          return Object.freeze(out);
+        }
+        function playbookPages() {
+          var out = [];
+          for (var i = 1; i <= 38; i++) out.push("assets/playbook/pages/page-" + (i < 10 ? "0" : "") + i + ".jpg");
           return Object.freeze(out);
         }
         var DECKS = Object.freeze({
-          "10x": Object.freeze({ slug: "10x", title: "10x — Case study", pdf: "https://www.rebluesmedia.com/cases/10x-case-study.pdf", pages: pages("10x"), thumbs: pages("10x", "thumbs/") }),
-          "mina-ai": Object.freeze({ slug: "mina-ai", title: "Mina AI — Case study", pdf: "https://www.rebluesmedia.com/cases/mina-ai-case-study.pdf", pages: pages("mina-ai"), thumbs: pages("mina-ai", "thumbs/") }),
+          "10x": Object.freeze({ slug: "10x", title: "10x — Case study", pages: pages("10x") }),
+          "mina-ai": Object.freeze({ slug: "mina-ai", title: "Mina AI — Case study", pages: pages("mina-ai") }),
+          "playbook": Object.freeze({ slug: "playbook", title: "The Launch Playbook", pages: playbookPages() }),
         });
         Object.defineProperty(window, "RLDeck", {
           value: Object.freeze({
@@ -4442,6 +4434,7 @@ Hook first, logo last. Distribution planned before the first frame. One owner, f
         function parse() {
           var h = location.hash;
           if (!/^#\/./.test(h)) return { name: "home" };
+          if (h === "#/playbook") return { name: "home", caseSlug: "playbook" };
           // #/case/<slug> opens the RLDeck viewer over the current view; only slugs in the frozen map pass
           var cm = /^#\/case\/([a-z0-9-]{1,64})\/?$/.exec(h);
           if (cm) return window.RLDeck && RLDeck.has(cm[1]) ? { name: "home", caseSlug: cm[1] } : fallback("home", "#/");
@@ -4775,39 +4768,24 @@ Hook first, logo last. Distribution planned before the first frame. One owner, f
       })();
     </script>
     <script>
-      // RLDeck viewer: case studies preview in-page from pre-rendered page images; #/case/<slug> opens it
+      // RLDeck viewer: case studies and playbook share one minimal in-page reader.
       (function () {
         "use strict";
         if (!window.RLDeck) return;
         var dk = document.getElementById("x-deck"), frame = document.getElementById("x-dk-frame");
         var ttl = document.getElementById("x-dk-title"), count = document.getElementById("x-dk-count");
         var prevB = document.getElementById("x-dk-prev"), nextB = document.getElementById("x-dk-next");
-        var strip = document.getElementById("x-dk-thumbs"), list = strip.querySelector("ol");
         var stage = document.getElementById("x-dk-stage");
         var reduceMq = window.matchMedia("(prefers-reduced-motion: reduce)");
-        var deck = null, cur = 0, pgs = [], ths = [], opener = null, viaHistory = false, inerted = [], swipedAt = 0;
+        var deck = null, cur = 0, pgs = [], opener = null, viaHistory = false, inerted = [], swipedAt = 0;
         var RE = /^#\/case\/([a-z0-9-]{1,64})\/?$/;
 
-        function slugOf(h) { var m = RE.exec(h || ""); return m && RLDeck.has(m[1]) ? m[1] : null; }
+        function slugOf(h) { if (h === "#/playbook") return "playbook"; var m = RE.exec(h || ""); return m && m[1] !== "playbook" && RLDeck.has(m[1]) ? m[1] : null; }
         function pad(n) { return String(n); }
 
         function build(d) {
-          deck = d; pgs = []; ths = [];
-          frame.textContent = ""; list.textContent = "";
-          d.pages.forEach(function (src, i) {
-            pgs.push(null);
-            var li = document.createElement("li");
-            var b = document.createElement("button");
-            b.type = "button"; b.className = "x-dk__th"; b.setAttribute("aria-label", "Page " + (i + 1));
-            var im = document.createElement("img");
-            im.alt = ""; im.width = 160; im.height = 90; im.loading = "lazy"; im.decoding = "async";
-            im.addEventListener("load", function () { b.classList.add("is-loaded"); });
-            im.addEventListener("error", function () { b.classList.add("is-loaded"); });
-            im.src = (d.thumbs && d.thumbs[i]) || src;
-            b.appendChild(im);
-            b.addEventListener("click", function () { go(i); });
-            li.appendChild(b); list.appendChild(li); ths.push(b);
-          });
+          deck = d; pgs = [];
+          frame.textContent = "";
         }
         function page(i) {
           if (i < 0 || i >= deck.pages.length) return null;
@@ -4845,12 +4823,6 @@ Hook first, logo last. Distribution planned before the first frame. One owner, f
           frame.classList.toggle("is-ready", inn.classList.contains("is-loaded"));
           count.textContent = "Page " + pad(i + 1) + " / " + n;
           prevB.disabled = i === 0; nextB.disabled = i === n - 1;
-          ths.forEach(function (t, k) { if (k === i) t.setAttribute("aria-current", "true"); else t.removeAttribute("aria-current"); });
-          var t = ths[i];
-          if (t) {
-            var left = t.offsetLeft - (strip.clientWidth - t.offsetWidth) / 2;
-            strip.scrollTo({ left: Math.max(0, left), behavior: instant || reduceMq.matches ? "auto" : "smooth" });
-          }
         }
 
         function open(slug, navigated) {
@@ -4861,6 +4833,7 @@ Hook first, logo last. Distribution planned before the first frame. One owner, f
           [].forEach.call(document.querySelectorAll("video"), function (v) { try { v.pause(); } catch (e) {} });
           if (deck !== d) { build(d); cur = 0; }
           ttl.textContent = d.title;
+          dk.classList.toggle("is-playbook", d.slug === "playbook");
           if (!dk.classList.contains("is-open")) {
             if (!opener) opener = document.activeElement;
             dk.hidden = false; dk.classList.add("is-open");
@@ -4891,8 +4864,8 @@ Hook first, logo last. Distribution planned before the first frame. One owner, f
         }
 
         document.addEventListener("click", function (e) {
-          var a = e.target.closest && e.target.closest("a[data-deck]");
-          if (a) opener = a;
+          var a = e.target.closest && e.target.closest("a[data-deck], a[href='#/playbook']");
+          if (a && !dk.contains(a)) opener = a;
         }, true);
         window.addEventListener("hashchange", function () {
           var s = slugOf(location.hash);
@@ -4902,7 +4875,7 @@ Hook first, logo last. Distribution planned before the first frame. One owner, f
         dk.querySelector("[data-dk-close]").addEventListener("click", close);
         prevB.addEventListener("click", function () { if (Date.now() - swipedAt > 450) go(cur - 1); });
         nextB.addEventListener("click", function () { if (Date.now() - swipedAt > 450) go(cur + 1); });
-        dk.addEventListener("click", function (e) { if (e.target === dk || e.target.classList.contains("x-dk__fit")) close(); });
+        dk.addEventListener("click", function (e) { if (e.target === dk) close(); });
 
         var tx = 0, ty = 0, tracking = false;
         stage.addEventListener("touchstart", function (e) { if (e.touches.length !== 1) { tracking = false; return; } tracking = true; tx = e.touches[0].clientX; ty = e.touches[0].clientY; }, { passive: true });

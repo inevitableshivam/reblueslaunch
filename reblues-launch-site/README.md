@@ -3,13 +3,13 @@
 The marketing site for Reblues Launch, a launch-film and distribution studio by Reblues Media.
 
 ## What's here
-- `index.html` contains the main site and hash routes `#/work`, `#/case/<slug>` and `#/journal`.
+- `index.html` contains the main site and hash routes `#/work`, `#/case/<slug>`, `#/playbook` and `#/journal`.
 - `assets/refinement.css` contains the shared surface, component and responsive refinements.
 - `assets/plans-footer.css` contains the final plans and footer layout refinements.
-- `assets/showcase-playbook.css` styles the playbook feature and case-study viewer link.
+- `assets/showcase-playbook.css` styles the playbook feature and reader link.
 - `assets/process-stack.css` and `assets/process-slide.js` run the four-stage launch process. Desktop scroll slides the cards through one sticky frame; the frame releases as the last card fully covers the stack. Smaller viewports and reduced-motion preferences show all four cards in normal reading order.
 - `assets/films/` holds the six locally served showcase films and their posters. The 10x Web film is the cut associated with Evan Yadegari's linked launch post.
-- `assets/playbook/` holds the 38-page PDF and its cover preview. The hero CTA opens the PDF directly; the homepage feature and case-study viewer link to it as well.
+- `assets/playbook/` holds the source PDF, card cover, and 38 optimized page previews. The hero CTA, homepage feature, and case-study viewer open one in-page reader with previous/next navigation; no download control is shown.
 - Deploy the entire folder, including `assets/`.
 - Other illustration and case-study assets remain in the public Supabase bucket `launch-films` (project `ocoqzvxhrwnqsrifcraw`); `ASSETS.md` records those remote references.
 
