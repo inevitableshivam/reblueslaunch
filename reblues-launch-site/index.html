@@ -2701,7 +2701,7 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
     <link rel="stylesheet" href="assets/process-stack.css"/>
     <link rel="stylesheet" href="assets/plans-footer.css"/>
     <link rel="stylesheet" href="assets/showcase-playbook.css?v=20261023-1"/>
-    <link rel="stylesheet" href="assets/journal.css?v=20261024-1"/>
+    <link rel="stylesheet" href="assets/journal.css?v=20261024-2"/>
     <script src="assets/process-slide.js" defer></script>
     <script>
       document.documentElement.classList.add("x-js");
@@ -4527,7 +4527,7 @@ To start cleanly, a launch needs five things from the company side: a date, prod
           var pc = p.film ? bySlug(p.film) : null;
           var relatedFilm = pc ? '<p class="x-mono x-eyebrow">Related film</p><a class="x-next x-r" href="#/work">' + media(pc, false) +
             '<span class="x-next__body"><span class="x-mono">Film · ' + pc.client + "</span><h3>" + pc.title + '</h3><span class="x-next__go">Watch the films</span></span></a>' : "";
-          return '<div class="x-wrap"><div class="x-rd">' +
+          return '<div class="x-wrap x-article-wrap"><div class="x-rd">' +
             '<nav class="x-crumb x-mono" aria-label="Breadcrumb"><a href="#/journal">Journal</a><span aria-hidden="true">/</span><span aria-current="page">' + p.cat + "</span></nav>" +
             '<header class="x-art__head"><div class="x-art__meta x-r"><span class="x-tagl">' + p.cat + '</span><span class="x-tagl">' + p.read + '</span><span class="x-tagl">' + p.date + "</span></div>" +
             '<h1 class="x-h1 x-r" tabindex="-1" style="--st:.06s">' + p.title + '</h1><p class="x-lede x-r" style="--st:.12s">' + p.dek + "</p></header>" +
