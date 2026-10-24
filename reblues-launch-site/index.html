@@ -4505,7 +4505,7 @@ To start cleanly, a launch needs five things from the company side: a date, prod
           return '<span class="x-cs__media x-cs__media--cover' + (cls || "") + '" style="--ph:' + p.ph + '"><img' + (p.px ? ' class="x-px"' : "") + ' data-cfrom="' + p.img + '" alt="" width="1200" height="896" loading="lazy" decoding="async" /></span>';
         }
         function postCard(p, i, feat) {
-          return '<li class="x-r' + (feat ? " is-feat" : "") + '" data-groups="' + p.cat + '" style="--st:' + (Math.min(i, 3) * 0.08) + 's"><a class="x-cs" href="#/journal/' + p.slug + '">' + cover(p) +
+          return '<li class="x-r' + (feat ? " is-feat" : " is-note") + '" data-groups="' + p.cat + '" style="--st:' + (Math.min(i, 3) * 0.08) + 's"><a class="x-cs" href="#/journal/' + p.slug + '">' + (feat ? cover(p) : "") +
             '<span class="x-cs__body"><span class="x-journal-top"><span class="x-mono">' + p.cat + " · " + p.read + '</span><span class="x-journal-no">' + String(i + 1).padStart(2, "0") + "</span></span><h3>" + p.title + "</h3><p>" + p.dek + '</p><span class="x-jread">Read article</span></span></a></li>';
         }
         function nextPost(p, label) {
@@ -4515,12 +4515,10 @@ To start cleanly, a launch needs five things from the company side: a date, prod
         function journalHTML() {
           var feature = postCard(POSTS[0], 0, true);
           var cards = POSTS.slice(1).map(function (p, i) { return postCard(p, i + 1, false); }).join("");
-          return '<div class="x-wrap x-journal-hub"><header class="x-hub__head"><p class="x-mono x-eyebrow x-r">Journal · Field notes</p>' +
-            '<h1 class="x-h1 x-r" tabindex="-1" style="--st:.06s">Four launches, taken apart.</h1>' +
-            '<p class="x-lede x-r" style="--st:.12s">The brief, the decisions and the systems behind three client launches and the Reblues launch playbook.</p></header>' +
-            '<div class="x-filters x-r" role="group" aria-label="Filter by category">' +
-            ["All", "Case study", "Playbook"].map(function (f) { return '<button type="button" data-f="' + f + '" aria-pressed="' + (f === "All") + '">' + f + "</button>"; }).join("") +
-            '</div><ul class="x-journal-feature" id="x-journal-feature">' + feature + '</ul><ul class="x-journal-grid" id="x-csg">' + cards + "</ul></div>";
+          return '<div class="x-wrap x-journal-hub"><header class="x-hub__head"><div><p class="x-mono x-eyebrow x-r">Journal</p>' +
+            '<h1 class="x-h1 x-r" tabindex="-1" style="--st:.06s">From the launch room.</h1></div>' +
+            '<p class="x-lede x-r" style="--st:.12s">Clear notes on the story, systems and decisions behind launches that travelled.</p></header>' +
+            '<ul class="x-journal-feature" id="x-journal-feature">' + feature + '</ul><ul class="x-journal-grid" id="x-csg">' + cards + "</ul></div>";
         }
         function postHTML(p) {
           var toc = [], body = md(p.body, toc), i = POSTS.indexOf(p);
@@ -4610,10 +4608,11 @@ To start cleanly, a launch needs five things from the company side: a date, prod
         }
         function filters() {
           var grid = document.getElementById("x-csg");
-          if (!grid) return;
+          var controls = view.querySelector(".x-filters");
+          if (!grid || !controls) return;
           var feature = document.getElementById("x-journal-feature");
           var items = (feature ? [].slice.call(feature.children) : []).concat([].slice.call(grid.children));
-          view.querySelector(".x-filters").addEventListener("click", function (e) {
+          controls.addEventListener("click", function (e) {
             var b = e.target.closest("button");
             if (!b || b.getAttribute("aria-pressed") === "true") return;
             [].slice.call(this.children).forEach(function (o) { o.setAttribute("aria-pressed", String(o === b)); });
