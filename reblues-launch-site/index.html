@@ -2701,6 +2701,7 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
     <link rel="stylesheet" href="assets/process-stack.css"/>
     <link rel="stylesheet" href="assets/plans-footer.css"/>
     <link rel="stylesheet" href="assets/showcase-playbook.css?v=20261023-1"/>
+    <link rel="stylesheet" href="assets/journal.css?v=20261024-1"/>
     <script src="assets/process-slide.js" defer></script>
     <script>
       document.documentElement.classList.add("x-js");
@@ -2747,7 +2748,7 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
           </div>
           <div class="x-nav__group x-nav__pill x-nglass">
             <span class="x-nav__hl" aria-hidden="true"></span>
-            <a class="x-nav__link" data-route="work" href="#/work">All work</a>
+            <a class="x-nav__link" data-route="journal" href="#/journal">Journal</a>
             <span class="x-nav__div" aria-hidden="true"></span>
             <a class="x-nav__link" data-sec="case-studies" href="#case-studies">Cases</a>
             <span class="x-nav__div" aria-hidden="true"></span>
@@ -2760,7 +2761,7 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
           <a class="x-nav__link" data-sec="process" href="#process">Process</a>
           <a class="x-nav__link" data-sec="work" href="#work">Films</a>
           <a class="x-nav__link" data-sec="plans" href="#plans">Plans</a>
-          <a class="x-nav__link" data-route="work" href="#/work">All work</a>
+          <a class="x-nav__link" data-route="journal" href="#/journal">Journal</a>
           <a class="x-nav__link" data-sec="case-studies" href="#case-studies">Cases</a>
           <a class="x-nav__link" data-sec="contact" href="#contact">Contact</a>
           <a class="x-nav__cta" href="https://calendly.com/rebluesagency/30min" rel="noopener noreferrer" target="_blank">Plan Your Launch</a>
@@ -4298,102 +4299,117 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
         ];
         // journal posts: bodies are markdown, rendered only when a post is opened
         var POSTS = [
-          { slug: "hook-first-logo-last", cat: "Playbook", read: "5 min read", date: "Oct 2026", img: "https://ocoqzvxhrwnqsrifcraw.supabase.co/storage/v1/object/public/launch-films/site/ch2-write.webp", px: true, ph: "#a97960",
-            title: "Hook first, logo last: the first three seconds of a launch film",
-            dek: "Most launch films spend their opening on a logo. Here's how we decide what goes there instead.",
-            body: `The first three seconds of a launch film do one job: earn the next ten. On X and LinkedIn the video autoplays silently between a meme and a hiring post. Nobody has decided to watch it yet. A logo animation asks for patience the viewer hasn't agreed to give.
+          { slug: "10x-three-launches-791k-views", cat: "Case study", read: "6 min read", date: "Oct 2026", img: "assets/journal/10x-case.jpg", px: false, ph: "#182838", film: "10x",
+            title: "How 10x turned three launch films into 791K views",
+            dek: "A crowded AI category, a founder-led hook, and one story that evolved across three launches in four months.",
+            body: `10x is an AI app builder that can build, test and take a native iOS app to the App Store. The product was strong, but the category was crowded. A new AI app builder appeared on X almost every week, usually with the same claims: build faster, skip code, ship with AI. The launch could not sound like a better version of the same thing.
 
-### What a hook actually is
-A hook isn't a slogan. It's the tension your buyer already feels, shown fast enough that they recognise themselves. "Your dispatch board is a group chat" is a hook. "Introducing the future of field service" is not.
+### The brief was category, not features
+10x did automated testing, competitor research, App Store submission and launch content. Listed one after another, those features read like a product page. The stronger frame was bigger and easier to repeat: Shopify for apps.
+That line changed the story from a tool into an opportunity. It gave buyers a category they already understood and gave every launch a phrase that could travel beyond the film.
 
-### How we find it
-Before a word of script is locked, we write ten to fifteen opening lines across four angles:
-1. The pain: the moment the buyer's day breaks.
-2. The contrast: the old way and the new way, side by side.
-3. The claim: one specific, checkable promise.
-4. The question: something the buyer can't help answering in their head.
-We read them out loud to someone who doesn't know the product. The ones they repeat back win.
+### The founder became the first hook
+The first film opened with Evan Yadegari saying, "I'm 14, and I built a $10K MRR app." The founder was not supporting material. He was the story.
+That sentence earned attention before the product explanation began. It also made the next claim - the first open-source AI app builder - feel specific rather than generic. The film could then move into the product without spending its opening seconds on a logo or a feature list.
 
-### Rules we keep
-- The product appears by second five, not second twenty.
-- On-screen type carries the hook, because most people watch muted.
-- The logo lives at the end, when someone actually wants to know who made this.
+### Three launches carried one evolving narrative
+The second film reframed the opportunity again: "Building apps in 2026 is like dropshipping in 2016." Founders appeared on camera while motion graphics carried one product feature per beat. The story was not just that 10x could build an app. It was that more people could build an app business.
+Four months after the first launch, 10x Web opened by acknowledging the story already in motion: "Three months ago, we launched 10x." The old limitation - needing a MacBook - became the setup. The payoff was the ability to build, test and publish from any device.
 
-### The test
-Pause the film at three seconds. If a stranger can't tell you who it's for and what's wrong in their world, the hook isn't done.` },
-          { slug: "first-hour-plan", cat: "Playbook", read: "4 min read", date: "Oct 2026", img: "ch4-launch.png", px: true, ph: "#a39a6e",
-            title: "The first-hour plan: what happens after you hit publish",
-            dek: "A launch post without a first-hour plan is a press release nobody asked for.",
-            body: `Feeds judge a post fast. What happens in its first hour decides whether it gets shown to anyone outside your followers. So we plan that hour as carefully as the film.
+### What the feed gave back
+Across the three launch posts, public view counts on X reached more than 791,000:
+- 10x in April: 472K views.
+- 10x.app in May: 199K views.
+- 10x Web in August: 120K views.
+The combined posts also recorded 2,464 likes, 1,413 bookmarks, 373 replies and 112 reposts. The bookmarks matter: people did not only watch the launch. They saved the opportunity for later.
 
-### Before publish (T-24h)
-- Final cuts exported for every surface: 16:9 for the site, 1:1 and 4:5 for feeds, 9:16 for vertical.
-- Post copy locked for the founder, the company page and two or three team members, each written in its own voice.
-- The supporter list confirmed: who will engage, when, and with what.
+### The useful lesson
+Repeated launches do not need repeated explanations. They need a consistent category and a new reason to care each time. For 10x, the frame stayed stable while the proof evolved: open source, Shopify for apps, then build from anywhere.
+The film changed because the product changed. The story held because the category was clear.` },
+          { slug: "mina-ai-brand-in-two-weeks", cat: "Case study", read: "5 min read", date: "Oct 2026", img: "assets/journal/mina-ai-case.jpg", px: false, ph: "#14263a", film: "mina-ai",
+            title: "How Mina AI built a launch-ready brand in two weeks",
+            dek: "From a blank page to identity, launch film, cutdowns, print and sales assets for an AI workforce company.",
+            body: `Mina AI builds AI workers for manufacturing procurement. They read drawings, find suppliers, send RFQs and compare bids. The company needed more than a video: it needed a visual identity and a complete set of launch materials that could explain an unfamiliar product with confidence.
+The timeline was two weeks. The output included a logo, brand kit, 105-second launch film, 30-second cut, social cutdowns, print media and sales assets.
 
-### Minute 0 to 15
-The founder posts first. Personal accounts usually travel further than company pages. The company page reshares with a different angle, not the same caption.
+### Start with a system, not a deliverable
+The logo was drawn on a construction grid, with a mark and wordmark designed to hold up on dark and light backgrounds. Space Grotesk carried headlines, Manrope carried body copy, and a blue palette sat against navy and black.
+That system was applied immediately across profile images, web, merch, stationery and business cards. The point was not to make a folder of brand rules. It was to make every launch surface feel like the same company from day one.
 
-### Minute 15 to 60
-Supporters comment with substance, not "Congrats!". A real question, a use case, a reaction to a specific moment in the film. The founder replies to every comment in the first hour.
+### Open the film on the old way
+The first 30 seconds build tension around the work Mina AI replaces: follow-up emails, paperwork and drawings handled by hand. The film does not begin by announcing an AI workforce. It begins with the friction the buyer already knows.
+Then the product takes over. The second half moves through the company brain and the deployment of AI workers one at a time. The close makes the shift feel present rather than speculative: "The AI workforce is already here."
 
-### After the hour
-Pin the post. Send the film to customers and investors directly. Clip the strongest 10 seconds for a follow-up post the next day.
+### Storyboard before generating
+Every frame was planned in Figma before a single clip was made. The cinematic clips were AI-generated, but the direction was not delegated to the model. Shots were iterated until composition, motion and continuity supported the script.
+That separation matters. AI can produce worlds that are difficult to film, but it does not replace the work of deciding what each shot needs to communicate.
 
-### The point
-Distribution isn't a step after production. It's designed alongside the script, so the film is built for the feed it lands in.` },
-          { slug: "twenty-accounts", cat: "Distribution", read: "6 min read", date: "Oct 2026", img: "https://ocoqzvxhrwnqsrifcraw.supabase.co/storage/v1/object/public/launch-films/site/rl-amplify.webp", px: true, ph: "#6da7b6",
-            title: "Twenty accounts beat twenty thousand impressions",
-            dek: "How we build the shortlist of people your buyers already follow.",
-            body: `Paid impressions buy you attention for a moment. The right twenty people buy you belief. When an operator your buyer trusts shares your launch, the film arrives with a recommendation attached.
+### Ship the whole launch kit together
+The master film and 30-second cut were only part of the release. Social cutdowns, print, sales assets and the brand kit meant the same launch idea could move from the feed into a meeting, a profile, a business card or a follow-up.
+Nothing had to be invented after the film was approved. Launch day was distribution, not another production sprint.
 
-### Who makes the list
-- Operators: people doing your buyer's job in public.
-- Creators: niche voices with small, loyal audiences in your category.
-- Partners: integrations, investors and customers who benefit when you win.
+### What the founder said
+After delivery, Mina AI CEO Sara AlMahri replied: "That's absolutely PERFECT. Thank you so sooo much. I love it."
+The useful part of the project was not speed alone. It was coherence: one identity, one story and every asset required to ship it, built as one system.` },
+          { slug: "genlook-120-launch-assets", cat: "Case study", read: "6 min read", date: "Oct 2026", img: "assets/journal/genlook-case.jpg", px: false, ph: "#091813",
+            title: "How Genlook turned one brand system into 120+ launch assets",
+            dek: "Identity, a 43-second explainer, 42 ad variations and 17 short-form videos for an AI try-on app.",
+            body: `Genlook is a Shopify app for AI virtual try-on. A shopper uploads a photo and sees themselves wearing the product before buying. The product needed to make sense to two audiences at once: shoppers who wanted confidence and merchants who wanted more sales with fewer returns.
+The launch system grew to more than 120 assets across identity, web, advertising, social and video.
 
-### How we pick
-We start from your best customers and work outwards. Who do they follow, quote and reply to? A 4,000-follower account your buyers read daily beats a 400,000-follower generalist.
+### One identity had to survive every format
+The identity began with a green star mark and a wordmark set in Stack Sans Notch. FK Grotesk supported it, while three greens and a gradient created a recognisable palette.
+The system then had to move from a favicon to apparel, stationery, profile images, web and out-of-home. That range exposed weak choices quickly. A mark that works only in a polished presentation is not a working identity.
 
-### How we ask
-Never a cold "please share". Each person gets early access to the film, a short note on why it's relevant to their audience, and ready-to-post assets they can use or ignore. No pressure, no scripts.
+### The product proof came before the polish
+The 43-second website film walked through the try-on in two clicks. It showed the store, the try-on interaction, the difference between a page with and without the feature, and the data captured along the way.
+Every frame was storyboarded in Figma before animation. That made the film less about effects and more about proof: what the shopper does, what changes on the page and what the merchant learns.
 
-### What it adds up to
-A launch that shows up in your buyer's feed three or four times in a day, from different people they trust. That's what makes a product feel like it's arrived.` },
-          { slug: "discovery-to-launch", cat: "Process", read: "5 min read", date: "Oct 2026", img: "ch1-discover.png", px: true, ph: "#938f88",
-            title: "From discovery call to launch day in four weeks",
-            dek: "Discover, Write, Make, Launch: how a launch runs, and what we need from you at each step.",
-            body: `Most launches take two to four weeks from first call to launch day. Here's what each week looks like.
+### Twenty-one concepts became forty-two ads
+The ad system used the product itself as the creative source: the try-on widget, the AI model studio and the analytics. Headlines ranged from "Boost sales" to "Reduce returns."
+Each of the 21 square concepts was rebuilt in landscape. The copy was reflowed for the new placement rather than simply shrunk. That distinction is small in production and large in the feed; every format still needed to read at a glance.
 
-### Week 1: Discover
-We learn the product, the buyer and the moment. What has to land, what people will doubt, and why now. From you: a product walkthrough, access to one or two customer conversations, and your launch date.
+### Different buying moments needed different content
+Two carousels handled longer explanations: one moved from the returns problem to the fix, while another compared four Shopify apps for stores with traffic but weak conversion.
+LinkedIn and web banners used before-and-after structures. Founder talking-head videos answered objections such as "virtual try-on is just a gimmick." Creator videos demonstrated the Shopify listing and a live store. Six AI-generated explainers addressed hesitation and returns. Phone-first screen recordings put the hook in the first second and the product immediately after it.
 
-### Week 2: Write
-Hooks and angles first, then the script, then a scene-by-scene storyboard. Nothing is designed until the story is locked. From you: one round of feedback, from one decision-maker.
+### Scale came from the system
+The project included a logo and guidelines, one website explainer, 42 ad variations, carousels, banners, thumbnails and 17 short-form videos. Those pieces did not need separate visual ideas. They needed one visual language strong enough to keep producing.
+That is the real value of a launch system: not that every asset looks identical, but that every new format still feels recognisably yours.` },
+          { slug: "launch-is-bigger-than-the-film", cat: "Playbook", read: "7 min read", date: "Oct 2026", img: "assets/playbook/cover.jpg", px: true, ph: "#41557f", film: "mina-ai",
+            title: "The launch is bigger than the film",
+            dek: "The Reblues system for planning the story, film, post and first hour as one launch instead of four handoffs.",
+            body: `The film is roughly a third of the launch. The frame it enters, the post it rides on and the people who share it in the first hour decide the rest.
+That is why a clear product can still launch with a clear film and go nowhere. The film may explain the product, but the launch has no hook, no single owner and no plan for reach.
 
-### Week 3: Make
-Design, motion, voice and sound, built on your brand and simplified until anyone gets it. From you: brand assets and a review of the first cut.
+### Five stages, one sign-off each
+The Reblues process moves through Discover, Write, Make, Launch and Amplify. Each stage ends with one thing to approve before the next begins:
+1. Discover ends with the positioning brief.
+2. Write ends with the locked script and storyboard.
+3. Make ends with the master film.
+4. Launch ends with the cutdowns, post copy and run of show.
+5. Amplify ends with the creator wave and report.
+The sequence is normally planned backward from the launch date across roughly three weeks. Tighter dates use the same stages rather than skipping the thinking.
 
-### Week 4: Launch
-Cuts for every channel, copy for every post, timing for the day. With Amplify, the right people share it in the first hour. From you: the founder's time on launch day.
+### Discover the frame before writing the script
+Four inputs come first: the product, the ideal customer, the objections and the launch moment. The goal is one line a buyer can repeat.
+The category matters because it is where buyers will file the product for the next year. A useful frame is specific, easy to say back and built around the strongest doubt. For 10x, "every AI app builder sounds the same" led to the frame "Shopify for apps."
 
-### What speeds it up
-One decision-maker, a fixed launch date, and real product access. What slows it down is a committee.` },
-          { slug: "why-launch-films-fail", cat: "Opinion", read: "4 min read", date: "Oct 2026", img: "film-preview.webp", px: false, ph: "#226346",
-            title: "A great product, a decent video, and four hundred views",
-            dek: "Why most launch videos stall, and the gap one team can close.",
-            body: `Most launch videos are made in one place and posted from another, with nobody owning what happens after "publish".
+### Hook first, logo last
+Two seconds decide whether someone keeps scrolling. The film should open on a face, a product moving, the old way versus the new way, or the problem in one line. A title card spends the most valuable moment asking for patience.
+The typical sequence is logo, intro, feature list, CTA. The launch sequence is hook, problem, product, why now, then logo and CTA. Three hooks are written, one is chosen, and every beat is storyboarded before production begins.
 
-### Three failure points
-1. No hook. The film explains the product but opens on a logo.
-2. No plan. The post goes out at the wrong hour, from the wrong account, with a caption written in ten minutes.
-3. No reach. The people who could have carried it hear about it a week later.
+### Pick the day before the date
+A great film can still lose on a crowded morning. The slot is part of the plan. We look for a weekday morning when the buyer is active, avoid crowded launch days, and sign off the cuts, copy and timing at T-1.
+The post carries half the work. It needs three lines and one ask: what the product is, why it matters now and what the reader should do. The link belongs in the first reply rather than interrupting the main post.
 
-### The fix is ownership
-When one team owns the story, the film and the rollout, every decision is made with the feed in mind. The hook is written for silent autoplay. The cuts are made for each surface. The supporters are briefed before the post goes live.
+### Run the first hour to the minute
+The launch starts with the founder's account. The team and investors follow, then founder friends leave substantive comments, then the creator wave lands. The founder replies throughout the day.
+With Amplify, creators are matched to the ICP before launch and receive the film with their own angle. The plan watches which niches respond, shifts the later wave toward what works and ends with a report on reach, engagement, clicks and what to post next.
 
-### What that looks like
-Hook first, logo last. Distribution planned before the first frame. One owner, from film to feed.` },
+### The film should keep working
+After launch day, the film can stay pinned, lead the website, move into sales follow-ups and investor updates, and be recut for LinkedIn or ads.
+To start cleanly, a launch needs five things from the company side: a date, product access, the brand kit, one decision-maker and the team present on launch day. Everything else can be planned backward from there.` },
         ];
         function postBy(s) { for (var i = 0; i < POSTS.length; i++) if (POSTS[i].slug === s) return POSTS[i]; return null; }
         // covers are folded into the page by the <img data-cover> tags already on home; reuse their src
@@ -4490,25 +4506,29 @@ Hook first, logo last. Distribution planned before the first frame. One owner, f
         }
         function postCard(p, i, feat) {
           return '<li class="x-r' + (feat ? " is-feat" : "") + '" data-groups="' + p.cat + '" style="--st:' + (Math.min(i, 3) * 0.08) + 's"><a class="x-cs" href="#/journal/' + p.slug + '">' + cover(p) +
-            '<span class="x-cs__body"><span class="x-mono">' + p.cat + " · " + p.read + "</span><h3>" + p.title + "</h3><p>" + p.dek + '</p><span class="x-jread">Read</span></span></a></li>';
+            '<span class="x-cs__body"><span class="x-journal-top"><span class="x-mono">' + p.cat + " · " + p.read + '</span><span class="x-journal-no">' + String(i + 1).padStart(2, "0") + "</span></span><h3>" + p.title + "</h3><p>" + p.dek + '</p><span class="x-jread">Read article</span></span></a></li>';
         }
         function nextPost(p, label) {
           return '<a class="x-next x-r" href="#/journal/' + p.slug + '">' + cover(p) +
             '<span class="x-next__body"><span class="x-mono">' + label + " · " + p.cat + " · " + p.read + "</span><h3>" + p.title + '</h3><span class="x-next__go">Read the post</span></span></a>';
         }
         function journalHTML() {
-          var cards = POSTS.map(function (p, i) { return postCard(p, i, false); }).join("");
-          return '<div class="x-wrap"><header class="x-hub__head"><p class="x-mono x-eyebrow x-r">Journal</p>' +
-            '<h1 class="x-h1 x-r" tabindex="-1" style="--st:.06s">Notes from the launch room.</h1></header>' +
+          var feature = postCard(POSTS[0], 0, true);
+          var cards = POSTS.slice(1).map(function (p, i) { return postCard(p, i + 1, false); }).join("");
+          return '<div class="x-wrap x-journal-hub"><header class="x-hub__head"><p class="x-mono x-eyebrow x-r">Journal · Field notes</p>' +
+            '<h1 class="x-h1 x-r" tabindex="-1" style="--st:.06s">Four launches, taken apart.</h1>' +
+            '<p class="x-lede x-r" style="--st:.12s">The brief, the decisions and the systems behind three client launches and the Reblues launch playbook.</p></header>' +
             '<div class="x-filters x-r" role="group" aria-label="Filter by category">' +
-            ["All", "Playbook", "Distribution", "Process", "Opinion"].map(function (f) { return '<button type="button" data-f="' + f + '" aria-pressed="' + (f === "All") + '">' + f + "</button>"; }).join("") +
-            '</div><ul class="x-csg x-jg" id="x-csg">' + cards + "</ul></div>";
+            ["All", "Case study", "Playbook"].map(function (f) { return '<button type="button" data-f="' + f + '" aria-pressed="' + (f === "All") + '">' + f + "</button>"; }).join("") +
+            '</div><ul class="x-journal-feature" id="x-journal-feature">' + feature + '</ul><ul class="x-journal-grid" id="x-csg">' + cards + "</ul></div>";
         }
         function postHTML(p) {
           var toc = [], body = md(p.body, toc), i = POSTS.indexOf(p);
           var rel = [POSTS[(i + 1) % POSTS.length], POSTS[(i + 2) % POSTS.length]];
           var items = toc.map(function (h) { return '<li><a href="#/journal/' + p.slug + '" data-toc="' + h.id + '">' + esc(h.t) + "</a></li>"; }).join("");
-          var pc = bySlug("mina-ai");
+          var pc = p.film ? bySlug(p.film) : null;
+          var relatedFilm = pc ? '<p class="x-mono x-eyebrow">Related film</p><a class="x-next x-r" href="#/work">' + media(pc, false) +
+            '<span class="x-next__body"><span class="x-mono">Film · ' + pc.client + "</span><h3>" + pc.title + '</h3><span class="x-next__go">Watch the films</span></span></a>' : "";
           return '<div class="x-wrap"><div class="x-rd">' +
             '<nav class="x-crumb x-mono" aria-label="Breadcrumb"><a href="#/journal">Journal</a><span aria-hidden="true">/</span><span aria-current="page">' + p.cat + "</span></nav>" +
             '<header class="x-art__head"><div class="x-art__meta x-r"><span class="x-tagl">' + p.cat + '</span><span class="x-tagl">' + p.read + '</span><span class="x-tagl">' + p.date + "</span></div>" +
@@ -4519,8 +4539,7 @@ Hook first, logo last. Distribution planned before the first frame. One owner, f
             '<article class="x-prose">' + body + "</article>" +
             '<aside class="x-jcta x-r" aria-label="Book a call"><h2>Launching soon? Tell us the date.</h2><a class="x-btn" href="' + CAL + '" target="_blank" rel="noopener noreferrer">Book a 30-min call</a></aside></div></div>' +
             '<div class="x-rd__end"><p class="x-mono x-eyebrow">Next read</p><ul class="x-csg x-jg x-jg--2">' + rel.map(function (r, k) { return postCard(r, k, false); }).join("") + "</ul>" +
-            '<p class="x-mono x-eyebrow">Related film</p><a class="x-next x-r" href="#/work">' + media(pc, false) +
-            '<span class="x-next__body"><span class="x-mono">Film · ' + pc.client + "</span><h3>" + pc.title + '</h3><span class="x-next__go">Watch the films</span></span></a>' +
+            relatedFilm +
             '<div class="x-rd__back"><a class="x-btn x-btn--line" href="#/journal">Back to the Journal</a></div></div>' +
             "</div></div>";
         }
@@ -4592,14 +4611,19 @@ Hook first, logo last. Distribution planned before the first frame. One owner, f
         function filters() {
           var grid = document.getElementById("x-csg");
           if (!grid) return;
-          var items = [].slice.call(grid.children);
+          var feature = document.getElementById("x-journal-feature");
+          var items = (feature ? [].slice.call(feature.children) : []).concat([].slice.call(grid.children));
           view.querySelector(".x-filters").addEventListener("click", function (e) {
             var b = e.target.closest("button");
             if (!b || b.getAttribute("aria-pressed") === "true") return;
             [].slice.call(this.children).forEach(function (o) { o.setAttribute("aria-pressed", String(o === b)); });
             var f = b.dataset.f, first = new Map();
             items.forEach(function (li) { if (!li.classList.contains("is-out")) first.set(li, li.getBoundingClientRect()); });
-            items.forEach(function (li) { li.classList.toggle("is-out", f !== "All" && li.dataset.groups.split(" ").indexOf(f) < 0); li.classList.add("is-in"); });
+            items.forEach(function (li) {
+              var groups = li.dataset.groups || "";
+              li.classList.toggle("is-out", f !== "All" && groups !== f && groups.split(" ").indexOf(f) < 0);
+              li.classList.add("is-in");
+            });
             if (reduceMq.matches || !grid.animate) { refresh(); return; }
             items.forEach(function (li) {
               if (li.classList.contains("is-out")) return;
