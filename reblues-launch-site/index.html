@@ -4808,6 +4808,89 @@ To start cleanly, a launch needs five things from the company side: a date, prod
 
       })();
     </script>
+        <div class="x-gate" id="x-gate" role="dialog" aria-modal="true" aria-labelledby="x-gate-title" hidden="">
+      <form class="x-gate__card" id="x-gate-form" novalidate="">
+        <button class="x-gate__close" type="button" data-gate-close="" aria-label="Close">✕</button>
+        <img class="x-gate__cover" src="assets/playbook/cover.jpg" width="1200" height="676" alt="" loading="lazy" decoding="async"/>
+        <div class="x-gate__body">
+          <p class="x-gate__eyebrow">The Launch Playbook · 38 pages</p>
+          <h3 id="x-gate-title">Read the playbook</h3>
+          <label><span>Name</span><input name="name" type="text" autocomplete="name" required="" placeholder="Your name"/></label>
+          <label><span>Work email</span><input name="email" type="email" autocomplete="email" required="" placeholder="you@company.com"/></label>
+          <input class="x-gate__hp" name="website_hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true"/>
+          <p class="x-gate__err" id="x-gate-err" role="alert"></p>
+          <button class="x-gate__go" type="submit">Open the playbook</button>
+          <p class="x-gate__fine">Read it here or download the PDF. No newsletter.</p>
+        </div>
+      </form>
+    </div>
+    <style>
+      .x-gate { position: fixed; inset: 0; z-index: 2147483000; display: grid; place-items: center; padding: 20px; background: rgb(20 20 22 / .55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); opacity: 0; transition: opacity .25s ease; }
+      .x-gate.is-in { opacity: 1; }
+      .x-gate[hidden] { display: none; }
+      .x-gate__card { position: relative; width: min(420px, 100%); background: #fbfbf8; color: #1d1d1f; border-radius: 18px; overflow: hidden; box-shadow: 0 30px 80px -20px rgb(0 0 0 / .45); transform: translateY(10px); transition: transform .3s cubic-bezier(.22,.7,.2,1); font-family: var(--x-sans, "Inter Tight", system-ui, sans-serif); }
+      .x-gate.is-in .x-gate__card { transform: none; }
+      .x-gate__cover { display: block; width: 100%; height: 150px; object-fit: cover; }
+      .x-gate__body { padding: 22px 24px 22px; display: grid; gap: 12px; }
+      .x-gate__eyebrow { margin: 0; font: 400 12px/1.2 var(--x-mono, ui-monospace, monospace); letter-spacing: .04em; color: #636366; }
+      .x-gate h3 { margin: 0 0 4px; font-weight: 400; font-size: 28px; line-height: 1.1; letter-spacing: -.03em; }
+      .x-gate label { display: grid; gap: 6px; font-size: 13px; color: #636366; }
+      .x-gate input { height: 44px; padding: 0 14px; border: 1px solid #1d1d1f24; border-radius: 10px; background: #fff; font: inherit; font-size: 15px; color: #1d1d1f; outline: none; transition: border-color .2s ease, box-shadow .2s ease; }
+      .x-gate input:focus { border-color: #fe6b00; box-shadow: 0 0 0 3px #fe6b0022; }
+      .x-gate__hp { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; opacity: 0; }
+      .x-gate__err { margin: 0; min-height: 0; font-size: 13px; color: #da2f35; }
+      .x-gate__err:empty { display: none; }
+      .x-gate__go { height: 46px; border: 0; border-radius: 999px; background: #1d1d1f; color: #fff; font: inherit; font-size: 15px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
+      .x-gate__go::after { content: ""; width: 6px; height: 6px; background: #fe6b00; }
+      .x-gate__go:disabled { opacity: .6; cursor: default; }
+      .x-gate__fine { margin: 0; font-size: 12px; color: #8e8e93; text-align: center; }
+      .x-gate__close { position: absolute; top: 10px; right: 10px; width: 32px; height: 32px; border-radius: 50%; border: 0; background: rgb(255 255 255 / .85); color: #1d1d1f; cursor: pointer; font-size: 14px; }
+    </style>
+    <script>
+      // Playbook gate: name + work email once, then the reader opens. Saved to the GTM board via /api/playbook-lead.
+      (function () {
+        "use strict";
+        var KEY = "rl_playbook_ok", g = document.getElementById("x-gate"), f = document.getElementById("x-gate-form"), err = document.getElementById("x-gate-err");
+        var onOk = null, onCancel = null, prev = null;
+        function ok() { try { return localStorage.getItem(KEY) === "1"; } catch (e) { return false; } }
+        function hide(cancelled) {
+          g.classList.remove("is-in"); setTimeout(function () { g.hidden = true; }, 200);
+          document.body.style.overflow = ""; if (window.xLenis) window.xLenis.start();
+          if (cancelled && onCancel) onCancel();
+          if (prev && prev.focus && cancelled) prev.focus({ preventScroll: true });
+        }
+        function show(cb, cancel) {
+          onOk = cb; onCancel = cancel; prev = document.activeElement;
+          g.hidden = false; requestAnimationFrame(function () { g.classList.add("is-in"); });
+          document.body.style.overflow = "hidden"; if (window.xLenis) window.xLenis.stop();
+          setTimeout(function () { f.elements.name.focus({ preventScroll: true }); }, 60);
+        }
+        g.querySelector("[data-gate-close]").addEventListener("click", function () { hide(true); });
+        g.addEventListener("click", function (e) { if (e.target === g) hide(true); });
+        document.addEventListener("keydown", function (e) { if (!g.hidden && e.key === "Escape") { e.preventDefault(); e.stopImmediatePropagation(); hide(true); } }, true);
+        // direct PDF links also go through the gate
+        document.addEventListener("click", function (e) {
+          var a = e.target.closest && e.target.closest('a[href$="reblues-launch-playbook-v3.pdf"]');
+          if (!a || ok()) return;
+          e.preventDefault(); show(function () { window.open(a.href, "_blank", "noopener"); });
+        }, true);
+        f.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var name = f.elements.name.value.trim(), email = f.elements.email.value.trim();
+          if (!name) { err.textContent = "Please add your name."; f.elements.name.focus(); return; }
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { err.textContent = "Please add a valid work email."; f.elements.email.focus(); return; }
+          err.textContent = ""; var btn = f.querySelector(".x-gate__go"); btn.disabled = true; btn.firstChild && (btn.childNodes[0].nodeValue = "Opening…");
+          fetch("/api/playbook-lead", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name: name, email: email, website_hp: f.elements.website_hp.value }) })
+            .catch(function () {})
+            .then(function () {
+              try { localStorage.setItem(KEY, "1"); } catch (x) {}
+              btn.disabled = false; btn.childNodes[0].nodeValue = "Open the playbook";
+              hide(false); var cb = onOk; onOk = null; if (cb) setTimeout(cb, 120);
+            });
+        });
+        window.RLGate = { ok: ok, show: show };
+      })();
+    </script>
     <script>
       // RLDeck viewer: case studies and playbook share one minimal in-page reader.
       (function () {
@@ -4867,6 +4950,7 @@ To start cleanly, a launch needs five things from the company side: a date, prod
         }
 
         function open(slug, navigated) {
+          if (slug === "playbook" && window.RLGate && !RLGate.ok()) { RLGate.show(function () { open(slug, navigated); }, function () { if (history.replaceState) history.replaceState(null, "", location.pathname + location.search); }); return; }
           var d = RLDeck.get(slug);
           if (!d) return;
           viaHistory = navigated;
