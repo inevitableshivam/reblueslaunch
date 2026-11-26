@@ -4299,7 +4299,7 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
         ];
         // journal posts: bodies are markdown, rendered only when a post is opened
         var POSTS = [
-          { slug: "10x-three-launches-791k-views", cat: "Case study", read: "6 min read", date: "Oct 2026", img: "assets/journal/10x-case.jpg", px: false, ph: "#182838", film: "10x",
+          { slug: "10x-three-launches-791k-views", cat: "Case study", read: "6 min read", date: "Oct 2026", img: "assets/journal/10x-case.jpg", px: false, ph: "#182838", film: "10x", sourceUrl: "https://www.rebluesmedia.com/cases/10x-case-study.pdf",
             title: "How 10x turned three launch films into 791K views",
             dek: "A crowded AI category, a founder-led hook, and one story that evolved across three launches in four months.",
             body: `10x is an AI app builder that can build, test and take a native iOS app to the App Store. The product was strong, but the category was crowded. A new AI app builder appeared on X almost every week, usually with the same claims: build faster, skip code, ship with AI. The launch could not sound like a better version of the same thing.
@@ -4325,8 +4325,13 @@ The combined posts also recorded 2,464 likes, 1,413 bookmarks, 373 replies and 1
 
 ### The useful lesson
 Repeated launches do not need repeated explanations. They need a consistent category and a new reason to care each time. For 10x, the frame stayed stable while the proof evolved: open source, Shopify for apps, then build from anywhere.
-The film changed because the product changed. The story held because the category was clear.` },
-          { slug: "mina-ai-brand-in-two-weeks", cat: "Case study", read: "5 min read", date: "Oct 2026", img: "assets/journal/mina-ai-case.jpg", px: false, ph: "#14263a", film: "mina-ai",
+The film changed because the product changed. The story held because the category was clear.
+
+### In brief
+What was the challenge? 10x needed to stand apart from similar AI app builders and give each product release a clear reason to care.
+What did Reblues make? Three founder-led launch films across four months, with motion graphics to explain the product.
+What happened? The three X launch posts recorded 791K+ combined public views, 2,464 likes, 1,413 bookmarks, 373 replies and 112 reposts in the October 2026 case-study snapshot. These are post metrics, not attributed sales or guaranteed future results.` },
+          { slug: "mina-ai-brand-in-two-weeks", cat: "Case study", read: "5 min read", date: "Oct 2026", img: "assets/journal/mina-ai-case.jpg", px: false, ph: "#14263a", film: "mina-ai", sourceUrl: "https://www.rebluesmedia.com/cases/mina-ai-case-study.pdf",
             title: "How Mina AI built a launch-ready brand in two weeks",
             dek: "From a blank page to identity, launch film, cutdowns, print and sales assets for an AI workforce company.",
             body: `Mina AI builds AI workers for manufacturing procurement. They read drawings, find suppliers, send RFQs and compare bids. The company needed more than a video: it needed a visual identity and a complete set of launch materials that could explain an unfamiliar product with confidence.
@@ -4350,7 +4355,12 @@ Nothing had to be invented after the film was approved. Launch day was distribut
 
 ### What the founder said
 After delivery, Mina AI CEO Sara AlMahri replied: "That's absolutely PERFECT. Thank you so sooo much. I love it."
-The useful part of the project was not speed alone. It was coherence: one identity, one story and every asset required to ship it, built as one system.` },
+The useful part of the project was not speed alone. It was coherence: one identity, one story and every asset required to ship it, built as one system.
+
+### In brief
+What was the challenge? Mina AI needed a coherent identity and film to explain its AI workforce for manufacturing procurement.
+What did Reblues make? A logo, brand kit, 105-second launch film, 30-second cut, social cutdowns, print media and sales assets.
+How long did it take? The case study documents a two-week production window. It does not report a view or revenue result.` },
           { slug: "genlook-120-launch-assets", cat: "Case study", read: "6 min read", date: "Oct 2026", img: "assets/journal/genlook-case.jpg", px: false, ph: "#091813",
             title: "How Genlook turned one brand system into 120+ launch assets",
             dek: "Identity, a 43-second explainer, 42 ad variations and 17 short-form videos for an AI try-on app.",
@@ -4534,7 +4544,7 @@ To start cleanly, a launch needs five things from the company side: a date, prod
             '<div class="x-jcover x-r" style="--st:.18s;--ph:' + p.ph + '"><img' + (p.px ? ' class="x-px"' : "") + ' data-cfrom="' + p.img + '" alt="" width="1200" height="896" decoding="async" /></div>' +
             '<div class="x-art__grid"><nav class="x-toc" aria-label="Contents"><p class="x-mono">Contents</p><ol>' + items + "</ol></nav>" +
             '<div><details class="x-tocm"><summary><span class="x-mono">Contents</span><span class="x-tocm__cur"></span></summary><nav aria-label="Contents"><ol>' + items + "</ol></nav></details>" +
-            '<article class="x-prose">' + body + "</article>" +
+            '<article class="x-prose">' + body + (p.sourceUrl ? '<p class="x-mono"><a href="' + p.sourceUrl + '" target="_blank" rel="noopener noreferrer">Read the source case study (PDF)</a></p>' : '') + "</article>" +
             '<aside class="x-jcta x-r" aria-label="Book a call"><h2>Launching soon? Tell us the date.</h2><a class="x-btn" href="' + CAL + '" target="_blank" rel="noopener noreferrer">Book a 30-min call</a></aside></div></div>' +
             '<div class="x-rd__end"><p class="x-mono x-eyebrow">Next read</p><ul class="x-csg x-jg x-jg--2">' + rel.map(function (r, k) { return postCard(r, k, false); }).join("") + "</ul>" +
             relatedFilm +
