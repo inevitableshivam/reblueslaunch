@@ -78,6 +78,12 @@ function page(post) {
   const title = slug ? `${post.title} | Reblues Launch` : "Journal | Reblues Launch";
   const description = slug ? post.dek : "Original case studies and practical launch strategy from Reblues Launch.";
   let html = withPosts.replace(/((?:href|src)=")assets\//g, "$1/assets/");
+  // Journal pages use their own article heading. Keep the shared hero styling
+  // without giving crawlers a second page-level heading.
+  html = html.replace(
+    /<h1 class="x-h1 x-in" id="hero-title"([^>]*)>([\s\S]*?)<\/h1>/,
+    '<div class="x-h1 x-in" id="hero-title"$1>$2</div>',
+  );
   html = html.replace(/<title>[^<]*<\/title>/, `<title>${escape(title)}</title>`)
     .replace(/(<link rel="canonical" href=")[^"]*("\s*\/>)/, `$1${origin}${path}$2`);
   for (const key of ["description", "twitter:title", "twitter:description"]) html = setMeta(html, key, key.endsWith("title") ? title : description);
