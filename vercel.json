@@ -2,5 +2,9 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
   "buildCommand": null,
-  "outputDirectory": "reblues-launch-site"
+  "outputDirectory": "reblues-launch-site",
+  "rewrites": [
+    { "source": "/journal", "destination": "/journal/index.html" },
+    { "source": "/journal/:slug", "destination": "/journal/:slug/index.html" }
+  ]
 }
