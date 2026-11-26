@@ -67,26 +67,40 @@ const renderBody = (body) => body.split(/\n\s*\n/).map((block) => {
   if (block.startsWith("- ")) return `<ul>${block.split("\n").map(line => `<li>${escape(line.replace(/^- /, ""))}</li>`).join("")}</ul>`;
   return `<p>${escape(block.replace(/\n/g, " "))}</p>`;
 }).join("\n");
-const layout = (title, description, canonical, body, schema = "") => `<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${escape(title)} | Reblues Launch</title><meta name="description" content="${escape(description)}"><link rel="canonical" href="${canonical}">
-<meta property="og:type" content="article"><meta property="og:site_name" content="Reblues Launch"><meta property="og:title" content="${escape(title)} | Reblues Launch"><meta property="og:description" content="${escape(description)}"><meta property="og:url" content="${canonical}">
-<meta name="twitter:card" content="summary"><meta name="twitter:title" content="${escape(title)} | Reblues Launch"><meta name="twitter:description" content="${escape(description)}">
-<link rel="icon" href="/assets/reblues-mark-orange.svg" type="image/svg+xml"><style>
-*{box-sizing:border-box}body{margin:0;background:#f5f5f2;color:#252927;font-family:Inter,Arial,sans-serif}a{color:inherit}header{border-bottom:1px solid #d9dcd7;padding:20px max(24px,5vw);display:flex;justify-content:space-between;gap:20px}header a{text-decoration:none;font-weight:600}header a:first-child{color:#f36a22}main{max-width:1120px;margin:auto;padding:70px 24px 110px}h1{font-size:clamp(2.2rem,5vw,4rem);line-height:1.08;letter-spacing:-.05em;max-width:850px;margin:12px 0 24px}h2{font-size:1.65rem;letter-spacing:-.03em;margin:46px 0 14px}p,li{font-size:1.05rem;line-height:1.75;color:#494f4b}.intro{max-width:720px;font-size:1.25rem}.meta{font-size:.78rem;color:#ae4a16;text-transform:uppercase;letter-spacing:.1em}.body{max-width:730px;margin-top:55px}.body p{margin:0 0 22px}.body ul{padding-left:24px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:45px}.card{display:block;text-decoration:none;border:1px solid #d9dcd7;border-radius:8px;padding:26px;background:#fff}.card:hover{border-color:#f36a22}.card h2{font-size:1.35rem;margin:12px 0}.card p{font-size:.95rem}.back{display:inline-block;margin-top:65px;color:#b64e1b}footer{border-top:1px solid #d9dcd7;padding:24px max(24px,5vw);font-size:.9rem;color:#696e6a}
-</style>${schema && `<script type="application/ld+json">${schema}</script>`}</head><body><header><a href="/">Reblues Launch</a><a href="/journal">Journal</a></header>${body}<footer>Reblues Launch · Launch films and distribution for tech companies</footer></body></html>`;
-
 const origin = "https://www.reblueslaunch.com";
-const cards = posts.map(post => `<a class="card" href="/journal/${escape(post.slug)}"><span class="meta">${escape(post.cat)} · ${escape(post.date)}</span><h2>${escape(post.title)}</h2><p>${escape(post.dek)}</p></a>`).join("\n");
+// A readable path must use the same Journal components and fonts as the approved site.
+// The extra articles are inserted into the existing POSTS collection before its router runs.
+const withPosts = source.slice(0, end) + "\n" + added.map(post => JSON.stringify(post)).join(",\n") + "\n" + source.slice(end);
+const setMeta = (html, key, value, attr = "name") => html.replace(new RegExp(`(<meta ${attr}="${key}" content=")[^"]*("\\s*\\/>)`), `$1${escape(value)}$2`);
+function page(post) {
+  const slug = post?.slug;
+  const path = slug ? `/journal/${slug}` : "/journal";
+  const title = slug ? `${post.title} | Reblues Launch` : "Journal | Reblues Launch";
+  const description = slug ? post.dek : "Original case studies and practical launch strategy from Reblues Launch.";
+  let html = withPosts.replace(/((?:href|src)=")assets\//g, "$1/assets/");
+  html = html.replace(/<title>[^<]*<\/title>/, `<title>${escape(title)}</title>`)
+    .replace(/(<link rel="canonical" href=")[^"]*("\s*\/>)/, `$1${origin}${path}$2`);
+  for (const key of ["description", "twitter:title", "twitter:description"]) html = setMeta(html, key, key.endsWith("title") ? title : description);
+  for (const key of ["og:title", "og:description", "og:url", "og:type"]) html = setMeta(html, key, key === "og:title" ? title : key === "og:description" ? description : key === "og:url" ? `${origin}${path}` : slug ? "article" : "website", "property");
+  // Preserve the path in the address bar while the site's existing router selects its Journal view.
+  html = html.replace("</head>", `<script>if(!location.hash)history.replaceState(null,"",location.pathname+location.search+"#/journal${slug ? `/${slug}` : ""}");</script></head>`);
+  html = html.replace(/href="#\/journal\//g, 'href="/journal/').replace(/href="#\/journal"/g, 'href="/journal"');
+  if (slug) {
+    const schema = JSON.stringify({"@context":"https://schema.org","@type":"Article",headline:post.title,description:post.dek,mainEntityOfPage:`${origin}${path}`,publisher:{"@type":"Organization",name:"Reblues Launch",url:origin}});
+    html = html.replace("</head>", `<script type="application/ld+json">${schema}</script></head>`);
+  }
+  // Text fallback for crawlers without JavaScript; the app replaces x-view on load.
+  const fallback = slug ? `<article><h1>${escape(post.title)}</h1><p>${escape(post.dek)}</p>${renderBody(post.body)}</article>` : `<article><h1>From the launch room.</h1>${posts.map(p => `<p><a href="/journal/${p.slug}">${escape(p.title)}</a></p>`).join("")}</article>`;
+  html = html.replace('<main id="x-view" class="x-view x-railed"></main>', `<main id="x-view" class="x-view x-railed"><noscript>${fallback}</noscript></main>`);
+  return html;
+}
 const journalDir = new URL("journal/", siteDir);
 mkdirSync(journalDir, { recursive: true });
-writeFileSync(new URL("index.html", journalDir), layout("Journal", "Original case studies and practical launch strategy from Reblues Launch.", `${origin}/journal`, `<main><span class="meta">Journal</span><h1>Notes from the work.</h1><p class="intro">Launch films, case studies and practical guidance for bringing a product into the world.</p><div class="grid">${cards}</div></main>`));
+writeFileSync(new URL("index.html", journalDir), page(null));
 for (const post of posts) {
-  const url = `${origin}/journal/${post.slug}`;
   const folder = new URL(`${post.slug}/`, journalDir);
   mkdirSync(folder, { recursive: true });
-  const schema = JSON.stringify({ "@context": "https://schema.org", "@type": "Article", headline: post.title, description: post.dek, mainEntityOfPage: url, publisher: { "@type": "Organization", name: "Reblues Launch", url: origin } });
-  writeFileSync(new URL("index.html", folder), layout(post.title, post.dek, url, `<main><a href="/journal" class="meta">← Journal</a><h1>${escape(post.title)}</h1><p class="intro">${escape(post.dek)}</p><span class="meta">${escape(post.cat)} · ${escape(post.date)}</span><article class="body">${renderBody(post.body)}</article><a href="/journal" class="back">← More from the Journal</a></main>`, schema));
+  writeFileSync(new URL("index.html", folder), page(post));
 }
 const urls = [`${origin}/`, `${origin}/journal`, ...posts.map(post => `${origin}/journal/${post.slug}`)];
 writeFileSync(new URL("sitemap.xml", siteDir), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(url => `  <url><loc>${url}</loc></url>`).join("\n")}\n</urlset>\n`);
